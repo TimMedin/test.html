@@ -96,3 +96,12 @@ button {
   color: #cc0000;
 }
 
+@media screen and (max-width: 600px) {
+  #quizContainer {
+    max-width: 90%;
+  }
+
+  #resultContainer {
+    max-width: 90%;
+  }
+}

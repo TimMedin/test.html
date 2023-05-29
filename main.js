@@ -84,7 +84,7 @@ var questions = {
     correctAnswer: "Б"
   },
   question9: {
-    question: "Який атарбут потрібен для коректної роботи тегу  &lt;img&gt",
+    question: "Який атрибут потрібен для коректної роботи тегу  &lt;img&gt",
     answers: {
       А: "А: Атрибути: href, alt",
       Б: "Б: Атрибути: src, href",
