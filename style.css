@@ -8,6 +8,42 @@ h1, h2 {
   text-align: center;
 }
 
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+#questionContainer {
+  margin-bottom: 20px;
+}
+
+#resultContainer {
+  display: none;
+}
+
+.correct {
+  color: green;
+}
+
+.incorrect {
+  color: red;
+}
+
+#nextButton {
+  display: none;
+}
+
 #quizContainer {
   max-width: 600px;
   margin: 0 auto;
