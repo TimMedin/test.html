@@ -175,7 +175,7 @@ function finishQuiz() {
     resultHTML += "<p>Вітаємо! Ви правильно відповіли на всі запитання!</p>";
   } else {
     resultHTML +=
-      "<p>Робота над помилками:</p><ul>";
+      "<p>Ваші помилки та правильні відповіді:</p><ul>";
 
     for (var i = 1; i <= Object.keys(questions).length; i++) {
       var questionObj = questions["question" + i];
@@ -231,7 +231,7 @@ if (localStorage.getItem("quizCompleted")) {
     resultHTML += "<p>Вітаємо! Ви правильно відповіли на всі запитання!</p>";
   } else {
     resultHTML +=
-      "<p>Робота над помилками:</p><ul>";
+      "<p>Ваші помилки та правильні відповіді:</p><ul>";
 
     for (var i = 1; i <= Object.keys(questions).length; i++) {
       var questionObj = questions["question" + i];
