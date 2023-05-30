@@ -163,44 +163,103 @@ function finishQuiz() {
   var percentage = (score / Object.keys(questions).length) * 100;
 
   resultHTML +=
-    "<p>Ви набрали " + score + " з " + Object.keys(questions).length + " балів.</p>";
+    "<p id='score'>Ваша оцінка: " +
+    score +
+    "/" +
+    Object.keys(questions).length +
+    " (" +
+    percentage +
+    "%)</p>";
 
-  if (localStorage.getItem("quizCompleted")) {
-    resultHTML +=
-      "<p>Ви вже пройшли тест. Набрані бали не будуть оновлені.</p>";
+  if (percentage === 100) {
+    resultHTML += "<p>Вітаємо! Ви правильно відповіли на всі запитання!</p>";
   } else {
-    localStorage.setItem("quizCompleted", true);
+    resultHTML +=
+      "<p>Робота над помилками:</p><ul>";
+
+    for (var i = 1; i <= Object.keys(questions).length; i++) {
+      var questionObj = questions["question" + i];
+      var userAnswer = userAnswers["question" + i];
+      var isCorrect = userAnswer === questionObj.correctAnswer;
+
+      resultHTML += "<li><strong>Питання " + i + ":</strong> " + questionObj.question + "<br>";
+      resultHTML += "Ваша відповідь: " + questionObj.answers[userAnswer] + "<br>";
+
+      if (isCorrect) {
+        resultHTML += "<span class='correct'>Правильно!</span><br>";
+      } else {
+        resultHTML +=
+          "<span class='incorrect'>Неправильно. Правильна відповідь: " +
+          questionObj.answers[questionObj.correctAnswer] +
+          "</span><br>";
+      }
+
+      resultHTML += "</li>";
+    }
+
+    resultHTML += "</ul>";
   }
 
   resultContainer.innerHTML = resultHTML;
 
   document.getElementById("quizContainer").style.display = "none";
   resultContainer.style.display = "block";
+
+  // Зберігаємо результати тесту в локальному сховищі
+  localStorage.setItem("quizCompleted", "true");
+  localStorage.setItem("quizScore", score);
 }
 
-function showScore() {
+// Перевірка, чи користувач вже пройшов тест
+if (localStorage.getItem("quizCompleted")) {
+  var score = localStorage.getItem("quizScore");
+
   var resultContainer = document.getElementById("resultContainer");
   var resultHTML = "<h2>Результат</h2>";
+  var percentage = (score / Object.keys(questions).length) * 100;
 
   resultHTML +=
-    "<p>Ви набрали " + score + " з " + Object.keys(questions).length + " балів.</p>";
+    "<p id='score'>Ваша оцінка: " +
+    score +
+    "/" +
+    Object.keys(questions).length +
+    " (" +
+    percentage +
+    "%)</p>";
 
-  resultHTML +=
-    "<p>Ви вже пройшли тест. Набрані бали не будуть оновлені.</p>";
+  if (percentage === 100) {
+    resultHTML += "<p>Вітаємо! Ви правильно відповіли на всі запитання!</p>";
+  } else {
+    resultHTML +=
+      "<p>Робота над помилками:</p><ul>";
+
+    for (var i = 1; i <= Object.keys(questions).length; i++) {
+      var questionObj = questions["question" + i];
+      var userAnswer = userAnswers["question" + i];
+      var isCorrect = userAnswer === questionObj.correctAnswer;
+
+      resultHTML += "<li><strong>Питання " + i + ":</strong> " + questionObj.question + "<br>";
+      resultHTML += "Ваша відповідь: " + questionObj.answers[userAnswer] + "<br>";
+
+      if (isCorrect) {
+        resultHTML += "<span class='correct'>Правильно!</span><br>";
+      } else {
+        resultHTML +=
+          "<span class='incorrect'>Неправильно. Правильна відповідь: " +
+          questionObj.answers[questionObj.correctAnswer] +
+          "</span><br>";
+      }
+
+      resultHTML += "</li>";
+    }
+
+    resultHTML += "</ul>";
+  }
 
   resultContainer.innerHTML = resultHTML;
 
   document.getElementById("quizContainer").style.display = "none";
   resultContainer.style.display = "block";
+} else {
+  showQuestion();
 }
-
-window.addEventListener("load", function() {
-  if (localStorage.getItem("quizCompleted")) {
-    showScore();
-  } else {
-    showQuestion();
-  }
-});
-
-document.getElementById("nextButton").addEventListener("click", checkAnswer);
-document.getElementById("submitButton").addEventListener("click", finishQuiz);
