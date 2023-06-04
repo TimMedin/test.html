@@ -1,7 +1,6 @@
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Aeroport Light";
   background-color: #f2f2f2;
-  padding: 20px;
 }
 
 h1, h2 {
@@ -139,3 +138,25 @@ button {
 ul {
   list-style: none;
 }
+
+.logo {
+  margin-left: 40px;
+  margin-right: 20px;
+}
+
+.navbar-brand {
+  font-weight: 700;
+}
+
+.nav-link {
+  font-weight: 600;
+}
+
+.h2-heading {
+  font-weight: 600;
+}
+
+.test-heading {
+  font-weight: 600;
+}
+

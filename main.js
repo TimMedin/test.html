@@ -158,7 +158,7 @@ function checkAnswer() {
 
 function finishQuiz() {
   var resultContainer = document.getElementById("resultContainer");
-  var resultHTML = "<h2>Результат</h2>";
+  var resultHTML = "<h2 class='h2-heading'>Результат</h2>";
   var percentage = (score / Object.keys(questions).length) * 100;
 
   resultHTML +=
@@ -214,7 +214,7 @@ if (localStorage.getItem("quizCompleted")) {
   var score = localStorage.getItem("quizScore");
 
   var resultContainer = document.getElementById("resultContainer");
-  var resultHTML = "<h2>Результат</h2>";
+  var resultHTML = "<h2 class='h2-heading'>Результат</h2>";
   var percentage = (score / Object.keys(questions).length) * 100;
 
   resultHTML +=
