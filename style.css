@@ -71,7 +71,7 @@ h1 {
   margin-right: 5px;
 }
 
-button {
+.test-btn {
   display: block;
   margin: 20px auto;
   padding: 10px 20px;
@@ -110,7 +110,7 @@ h1, h2 {
   text-align: center;
 }
 
-button {
+.test {
   display: block;
   margin: 20px auto;
 }
