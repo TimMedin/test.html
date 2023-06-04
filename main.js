@@ -260,5 +260,75 @@ if (localStorage.getItem("quizCompleted")) {
   document.getElementById("quizContainer").style.display = "none";
   resultContainer.style.display = "block";
 } else {
+  function checkAnswer() {
+  const selectedAnswer = document.querySelector("input[name='answer']:checked");
+  if (!selectedAnswer) return;
+
+  const answerIndex = parseInt(selectedAnswer.value);
+  const correctAnswerIndex = questions[currentQuestion].correctAnswer;
+
+  if (answerIndex === correctAnswerIndex) {
+    score++;
+    selectedAnswer.parentElement.classList.add("correct");
+  } else {
+    selectedAnswer.parentElement.classList.add("incorrect");
+  }
+
+  const nextButton = document.getElementById("nextButton");
+  nextButton.style.animation = "slide-out 0.5s forwards";
+  nextButton.style.pointerEvents = "none";
+
+  const submitButton = document.getElementById("submitButton");
+  if (currentQuestion === questions.length - 1) {
+    submitButton.style.display = "block";
+    submitButton.style.animation = "fade-in 0.5s forwards";
+  }
+
+  currentQuestion++;
+}
+
+function nextQuestion() {
+  const questionContainer = document.getElementById("questionContainer");
+  questionContainer.style.animation = "slide-out 0.5s forwards";
+
+  setTimeout(() => {
+    questionContainer.innerHTML = "";
+    questionContainer.style.animation = "";
+
+    if (currentQuestion < questions.length) {
+      showQuestion();
+    }
+  }, 500);
+}
+
+function finishQuiz() {
+  const quizContainer = document.getElementById("quizContainer");
+  quizContainer.style.animation = "slide-out 0.5s forwards";
+
+  const resultContainer = document.getElementById("resultContainer");
+  resultContainer.style.display = "block";
+
+  setTimeout(() => {
+    quizContainer.style.display = "none";
+
+    const resultMessage = score === questions.length ? "Вітаємо! Ви отримали максимальний бал!" : `Ви отримали ${score} з ${questions.length} балів.`;
+    const resultHTML = `
+      <h2>Результати</h2>
+      <p>${resultMessage}</p>
+      <h3>Робота над помилками:</h3>
+      <ul>
+        ${questions.map((question, index) => {
+          const answerIndex = parseInt(document.querySelector(`input[name='answer${index}']:checked`)?.value);
+          const correctAnswerIndex = question.correctAnswer;
+          const isCorrect = answerIndex === correctAnswerIndex;
+          const className = isCorrect ? "correct" : "incorrect";
+          return `<li class="${className}">${question.answers[correctAnswerIndex]}</li>`;
+        }).join("")}
+      </ul>
+    `;
+    resultContainer.innerHTML = resultHTML;
+    resultContainer.style.animation = "fade-in 0.5s forwards";
+  }, 500);
+}
   showQuestion();
 }

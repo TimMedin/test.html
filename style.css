@@ -152,10 +152,10 @@ h1, h2 {
 
 @media screen and (min-width: 992px) {
   .logo {
-
     margin-left: 40px;
   }
 }
+
 
 ul {
   list-style: none;
@@ -179,6 +179,36 @@ ul {
 
 .test-heading {
   font-weight: 600;
+}
+
+#nextButton {
+  display: none;
+  opacity: 0;
+  animation: fade-in 0.5s forwards;
+}
+
+#submitButton {
+  display: none;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-out {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
 }
 
 
