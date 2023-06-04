@@ -181,6 +181,54 @@ ul {
   font-weight: 600;
 }
 
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+#quizContainer {
+  position: relative;
+}
+
+#questionContainer {
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fade-in 0.5s forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+#resultContainer {
+  display: none;
+}
+
+.correct {
+  color: green;
+}
+
+.incorrect {
+  color: red;
+}
+
 #nextButton {
   display: none;
   opacity: 0;
@@ -210,6 +258,8 @@ ul {
     transform: translateX(-100%);
   }
 }
+
+
 
 
 
